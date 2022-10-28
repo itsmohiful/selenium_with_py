@@ -10,14 +10,25 @@ PATH = "C:\Program Files (x86)\chromedriver.exe"
 
 driver = webdriver.Chrome(PATH)
 
-driver.get("https://www.techwithtim.net/")
+driver.get("https://www.google.com/")
+
+
+# search = driver.find_element(By.NAME,"q")
+# search.send_keys("dhaka")
+
 
 try:
-    element = WebDriverWait(driver, 10).until(
-        EC.presence_of_element_located((By.LINK_TEXT, "Beginner Python Tutorials"))
+    search = WebDriverWait(driver, 5).until(
+        EC.presence_of_element_located((By.NAME,"q"))
     )
-    element.click()
-    
+
+    search.send_keys("dhaka")
+
+    time.sleep(5)
+    search.send_keys(Keys.RETURN)
+
+
 except:
     driver.quit()
-    
+
+
